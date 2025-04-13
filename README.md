@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AIハビットトラッカー
 
-## Getting Started
+AIを活用した習慣管理・健康管理Webアプリケーション
 
-First, run the development server:
+## プロジェクト概要
+
+AIハビットトラッカーは、日々の習慣管理、TODO管理、日記機能、AI分析を組み合わせた総合的な自己管理ツールです。「マイ ルーティン」アプリをベースに、AI機能を追加した発展形として開発されています。
+
+### 主な機能
+
+- **習慣トラッカー**: 毎日の習慣をチェックリスト形式で管理
+- **TODO管理**: その日限定のタスクを記録・管理
+- **日記機能**: 1日の振り返りや感情を自由に記録
+- **AI分析**: 習慣の進捗と日記内容からメンタル状態や健康状態を分析し、アドバイスを提供
+
+## 技術スタック
+
+- **フロントエンド**: Next.js, Tailwind CSS
+- **バックエンド**: Next.js API Routes + Cloudflare Workers
+- **データベース**: Supabase
+- **AI API**: Gemini API + Cloudflare Workers AI
+- **ホスティング**: Cloudflare Pages + Workers
+
+## 開発環境のセットアップ
 
 ```bash
+# リポジトリのクローン
+git clone git@github.com:yourusername/habit-reflection.git
+cd habit-reflection
+
+# 依存関係のインストール
+npm install
+
+# 開発サーバーの起動
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## プロジェクト構造
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+habit-reflection/
+├── src/
+│   ├── app/             # Next.jsのアプリケーションルート
+│   ├── components/      # UIコンポーネント
+│   │   ├── ui/          # 基本UIコンポーネント
+│   │   ├── habits/      # 習慣管理関連コンポーネント
+│   │   ├── journal/     # 日記関連コンポーネント
+│   │   ├── todo/        # TODO管理関連コンポーネント
+│   │   └── ai-analysis/ # AI分析関連コンポーネント
+│   └── lib/             # ユーティリティ関数やヘルパー
+├── public/              # 静的ファイル
+└── ...
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 開発ロードマップ
 
-## Learn More
+1. 基本UI/UXフレームワーク（カレンダー、日付ナビゲーション）
+2. 習慣トラッカー基本機能
+3. 日記機能
+4. AI分析（最小限の機能から）
+5. TODO機能
+6. ユーザー認証
 
-To learn more about Next.js, take a look at the following resources:
+## ライセンス
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+このプロジェクトは [MITライセンス](LICENSE) の下で公開されています。
