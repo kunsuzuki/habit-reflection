@@ -25,7 +25,7 @@ AIハビットトラッカーは、日々の習慣管理、TODO管理、日記�
 
 ```bash
 # リポジトリのクローン
-git clone git@github.com:yourusername/habit-reflection.git
+git clone git@github.com:kunsuzuki/habit-reflection.git
 cd habit-reflection
 
 # 依存関係のインストール
