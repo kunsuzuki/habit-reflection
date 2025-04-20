@@ -1,6 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
+/**
+ * ランディングページ
+ * アプリケーションの紹介と登録・ログインへの導線
+ */
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-white text-[#333333]">
@@ -39,9 +43,9 @@ export default function Home() {
                 <p className="mt-8 text-lg text-[#666666] leading-relaxed max-w-md">
                   AIがあなたの日々の習慣と振り返りから、健康とマインドをサポートする新しい習慣管理ツール。
                 </p>
-                <div className="mt-12">
-                  <div className="relative h-[52px]">
-                    <Link href="/register" className="absolute inline-flex items-center px-7 py-3.5 rounded-lg bg-gradient-to-b from-[#0A4B48] to-[#053735] text-white text-sm font-medium shadow-md transition-all duration-200 ease-in-out group">
+                <div className="mt-12 flex flex-col sm:flex-row gap-4">
+                  <div className="relative">
+                    <Link href="/register" className="inline-flex items-center px-7 py-3.5 rounded-lg bg-gradient-to-b from-[#0A4B48] to-[#053735] text-white text-sm font-medium shadow-md transition-all duration-200 ease-in-out group">
                       <span className="absolute inset-0 rounded-lg border-b-4 border-[#032523] group-hover:border-b-0 transition-all duration-200 ease-in-out"></span>
                       <span className="relative z-10 flex items-center group-hover:translate-y-1 transition-transform duration-200 ease-in-out">
                         無料で始める
@@ -51,6 +55,9 @@ export default function Home() {
                       </span>
                     </Link>
                   </div>
+                  <Link href="/dashboard" className="inline-flex items-center px-7 py-3.5 rounded-lg border border-[#F0F0F0] hover:border-[#053735] hover:text-[#053735] transition-all shadow-sm hover:shadow text-sm font-medium">
+                    ダッシュボードを見る
+                  </Link>
                 </div>
               </div>
               <div className="relative">
@@ -61,30 +68,39 @@ export default function Home() {
                       <div className="w-2.5 h-2.5 rounded-full bg-[#F6AD55]"></div>
                       <div className="w-2.5 h-2.5 rounded-full bg-[#68D391]"></div>
                     </div>
-                    <div className="pt-12 px-6">
-                      <div className="h-4 w-24 bg-[#F0F0F0] rounded-md mb-6"></div>
-                      <div className="space-y-3">
-                        <div className="flex items-center">
-                          <div className="h-5 w-5 rounded-md border border-[#E5E7EB] mr-3 shadow-sm"></div>
-                          <div className="h-4 w-40 bg-[#F0F0F0] rounded-md"></div>
-                        </div>
-                        <div className="flex items-center">
-                          <div className="h-5 w-5 rounded-md border border-[#E5E7EB] mr-3 flex items-center justify-center shadow-sm">
-                            <div className="h-3 w-3 bg-gradient-to-br from-[#0A4B48] to-[#053735] rounded-sm"></div>
+                    <div className="absolute top-8 left-0 w-full h-[calc(100%-8px)] p-4">
+                      <div className="w-full h-full bg-[#F9FAFB] rounded-b-lg p-4 flex flex-col">
+                        <div className="bg-white rounded-lg p-3 mb-3 shadow-sm">
+                          <div className="flex items-center mb-2">
+                            <div className="w-4 h-4 rounded-full bg-[#68D391] mr-2"></div>
+                            <div className="text-xs font-medium">朝のランニング</div>
                           </div>
-                          <div className="h-4 w-32 bg-[#F0F0F0] rounded-md"></div>
+                          <div className="bg-[#F9FAFB] h-2 rounded-full overflow-hidden">
+                            <div className="bg-[#68D391] h-full w-4/5 rounded-full"></div>
+                          </div>
                         </div>
-                        <div className="flex items-center">
-                          <div className="h-5 w-5 rounded-md border border-[#E5E7EB] mr-3 shadow-sm"></div>
-                          <div className="h-4 w-36 bg-[#F0F0F0] rounded-md"></div>
+                        <div className="bg-white rounded-lg p-3 mb-3 shadow-sm">
+                          <div className="flex items-center mb-2">
+                            <div className="w-4 h-4 rounded-full bg-[#F6AD55] mr-2"></div>
+                            <div className="text-xs font-medium">読書（30分）</div>
+                          </div>
+                          <div className="bg-[#F9FAFB] h-2 rounded-full overflow-hidden">
+                            <div className="bg-[#F6AD55] h-full w-3/5 rounded-full"></div>
+                          </div>
+                        </div>
+                        <div className="bg-white rounded-lg p-3 shadow-sm">
+                          <div className="flex items-center mb-2">
+                            <div className="w-4 h-4 rounded-full bg-[#FC8181] mr-2"></div>
+                            <div className="text-xs font-medium">瞑想</div>
+                          </div>
+                          <div className="bg-[#F9FAFB] h-2 rounded-full overflow-hidden">
+                            <div className="bg-[#FC8181] h-full w-2/5 rounded-full"></div>
+                          </div>
                         </div>
                       </div>
-                      <div className="mt-10 h-24 bg-gradient-to-br from-[#F9FAFB] to-[#F5F5F5] rounded-lg shadow-sm"></div>
                     </div>
                   </div>
                 </div>
-                <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[#053735]/5 rounded-full shadow-lg"></div>
-                <div className="absolute -top-6 -left-6 w-16 h-16 bg-[#A67C52]/5 rounded-full shadow-lg"></div>
               </div>
             </div>
           </div>
@@ -94,51 +110,34 @@ export default function Home() {
         <section className="py-32 bg-[#F9FAFB]">
           <div className="max-w-5xl mx-auto px-8">
             <div className="text-center mb-20">
-              <h2 className="text-3xl font-medium tracking-tight">
+              <h2 className="text-3xl font-medium tracking-tight mb-6">
                 主な機能
               </h2>
-              <p className="mt-5 text-[#666666] max-w-xl mx-auto">
-                シンプルな4つの機能で、あなたの健康的な習慣をサポート
+              <p className="text-[#666666] max-w-xl mx-auto">
+                AIハビットトラッカーは、習慣化をサポートする様々な機能を提供します。
               </p>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-              {/* 習慣トラッカー */}
-              <div className="p-8 rounded-xl bg-white border border-[#F0F0F0] hover:border-[#053735] transition-colors group shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300">
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#0A4B48]/10 to-[#053735]/10 flex items-center justify-center text-[#053735] mb-6 shadow-sm">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+              <div className="bg-white p-8 rounded-xl shadow-sm border border-[#F0F0F0] group hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-[#F0F7F7] rounded-lg flex items-center justify-center text-[#053735] mb-6 group-hover:bg-[#E6F0F0] transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-medium mb-3 group-hover:text-[#053735] transition-colors">習慣トラッカー</h3>
-                <p className="text-[#666666]">毎日の習慣をチェックリスト形式で管理し、継続的な習慣化をサポートします。朝・昼・夜の時間帯別に設定可能。</p>
+                <h3 className="text-xl font-medium mb-3 group-hover:text-[#8A7968] transition-colors">習慣トラッカー</h3>
+                <p className="text-[#666666]">日々の習慣を記録し、継続状況を可視化。達成率やストリーク（連続達成日数）を自動計算します。</p>
               </div>
-
-              {/* TODO管理 */}
-              <div className="p-8 rounded-xl bg-white border border-[#F0F0F0] hover:border-[#A67C52] transition-colors group shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300">
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#A67C52]/10 to-[#8A6A45]/10 flex items-center justify-center text-[#A67C52] mb-6 shadow-sm">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                  </svg>
-                </div>
-                <h3 className="text-xl font-medium mb-3 group-hover:text-[#A67C52] transition-colors">TODO管理</h3>
-                <p className="text-[#666666]">その日限定のタスクを記録・管理し、日々の目標達成をサポートします。優先度や締め切りの設定も可能。</p>
-              </div>
-
-              {/* 日記機能 */}
-              <div className="p-8 rounded-xl bg-white border border-[#F0F0F0] hover:border-[#5B7B7A] transition-colors group shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300">
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#5B7B7A]/10 to-[#4A6A69]/10 flex items-center justify-center text-[#5B7B7A] mb-6 shadow-sm">
+              <div className="bg-white p-8 rounded-xl shadow-sm border border-[#F0F0F0] group hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-[#F0F7F7] rounded-lg flex items-center justify-center text-[#053735] mb-6 group-hover:bg-[#E6F0F0] transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-medium mb-3 group-hover:text-[#5B7B7A] transition-colors">日記機能</h3>
-                <p className="text-[#666666]">1日の振り返りや感情を自由に記録し、自己理解を深めます。テキストだけでなく、感情タグの追加も可能。</p>
+                <h3 className="text-xl font-medium mb-3 group-hover:text-[#8A7968] transition-colors">日記機能</h3>
+                <p className="text-[#666666]">その日の気分や出来事を記録。AIが感情分析を行い、あなたのメンタル状態を可視化します。</p>
               </div>
-
-              {/* AI分析 */}
-              <div className="p-8 rounded-xl bg-white border border-[#F0F0F0] hover:border-[#8A7968] transition-colors group shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300">
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-[#8A7968]/10 to-[#79685A]/10 flex items-center justify-center text-[#8A7968] mb-6 shadow-sm">
+              <div className="bg-white p-8 rounded-xl shadow-sm border border-[#F0F0F0] group hover:shadow-md transition-shadow">
+                <div className="w-12 h-12 bg-[#F0F7F7] rounded-lg flex items-center justify-center text-[#053735] mb-6 group-hover:bg-[#E6F0F0] transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                   </svg>
