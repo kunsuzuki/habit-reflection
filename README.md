@@ -54,27 +54,93 @@ habit-reflection/
 
 ## 開発ロードマップ
 
-1. **基本UI/UXフレームワーク（カレンダー、日付ナビゲーション）**
-    - Figma MCPでデザインを確認し、存在しないページは既存デザインを参考に実装
-    - Atomic Designパターンで段階的にコンポーネントを作成
-    - 各段階でブラウザ表示を確認し、進捗ごとにユーザーへ報告・確認依頼
+1. **基本UI/UXフレームワーク**
 2. **ユーザー認証（サインアップ、ログイン、ログアウト）**
-3. **TODO機能**
-   - TODOの作成、編集、削除
-   - 日付設定
-   - 通知機能
-   - 個別TODOページとメモ機能
-4. **習慣トラッカー基本機能**
-   - 習慣の作成、編集、削除
-   - 繰り返し設定（毎日、毎週、隔週、毎月、毎年）
-   - 曜日指定
-   - 通知機能
-5. **日記機能**
-   - 日付ごとの日記エントリー
-   - テキストエディタ
-6. **AI分析（最小限の機能から）**
+3. **日記機能**
+   - 日記入力コンポーネント
+   - Supabase連携
+4. **TODO/習慣データのCRUD実装**
+   - TODO・習慣の作成、編集、削除（サーバーアクション化）
+   - 日付・繰り返し・通知・メモ機能
+   - RLS（Row Level Security）ポリシーのテストと強化
+5. **AI分析機能**
+   - AI分析ボタン・API連携
    - 習慣達成率の分析
    - 気分と習慣の相関関係
+6. **テスト・リリース準備**
+   - E2Eテスト
+   - README・ドキュメントの更新
+
+## セキュリティとデータアクセス設計
+
+このプロジェクトでは、Next.js 15のServer ComponentsとServer Actionsを活用し、Supabaseとの連携においてセキュアな実装を行います。
+
+### データアクセスの原則
+
+1. **サーバーサイドファーストアプローチ**
+   - データの読み書きは基本的にServer ComponentsまたはServer Actionsで行う
+   - クライアントサイドからの直接DBアクセスは最小限に留める
+
+2. **多層防御戦略**
+   - RLS（Row Level Security）を必ず設定する
+   - サーバーサイドでも追加の権限チェックを実装する
+   - クライアントから送信されるデータは常にサーバーサイドで検証する
+
+### 実装パターン
+
+1. **読み取り操作（GET）**
+   - Server Componentsを使用してデータを取得
+   - 例: 
+   ```tsx
+   // app/dashboard/page.tsx
+   async function DashboardPage() {
+     const supabase = createServerClient();
+     const { data: habits } = await supabase.from('habits').select();
+     return <HabitList habits={habits} />;
+   }
+   ```
+
+2. **書き込み操作（POST, PUT, DELETE）**
+   - Server Actionsを使用
+   - 例:
+   ```tsx
+   // app/actions.ts
+   'use server'
+   export async function createTodo(formData: FormData) {
+     const supabase = createServerClient();
+     const { data: { user } } = await supabase.auth.getUser();
+     if (!user) throw new Error('認証が必要です');
+     
+     // 入力検証
+     const title = formData.get('title');
+     if (!title) throw new Error('タイトルは必須です');
+     
+     return await supabase.from('todos').insert({
+       title,
+       user_id: user.id
+     });
+   }
+   ```
+
+### セキュリティ対策
+
+1. **入力検証**
+   - zodなどのバリデーションライブラリを使用
+   - サーバーサイドで必ず検証を行う
+
+2. **RLS設計**
+   - 全テーブルにRLSポリシーを適用
+   - 例:
+   ```sql
+   -- habitsテーブルのRLSポリシー
+   CREATE POLICY "ユーザーは自分の習慣のみ参照可能" 
+   ON habits FOR SELECT 
+   USING (auth.uid() = user_id);
+   
+   CREATE POLICY "ユーザーは自分の習慣のみ作成可能" 
+   ON habits FOR INSERT 
+   WITH CHECK (auth.uid() = user_id);
+   ```
 
 ## デザイン・開発フロー
 
